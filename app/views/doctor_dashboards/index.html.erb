@@ -1,0 +1,25 @@
+
+<div class="h-full flex" data-controller="side-bar-buttons">
+
+  <!-- Sidebar -->
+  
+    <%= render "layouts/side_bar"%>
+
+  <!-- Main Content -->
+  <div class="flex-1 overflow-y-auto" data-side-bar-buttons-target="content" >
+      <%= render "doctor_dashboards/header"%>
+    
+
+    <div class="p-8">
+
+      <!-- Metric Cards -->
+    
+      <%= render "doctor_dashboards/metric_cards"%>
+
+
+      <!-- Overview Chart + Appointment List -->
+      <%= render "doctor_dashboards/overview_appointment_list"%>
+    </div>
+  </div>
+
+</div>

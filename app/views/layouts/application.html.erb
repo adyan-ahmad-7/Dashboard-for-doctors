@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DoctorsDashboard</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body>
+    <div data-controller="message-popup" class="flex item-center justify-center absolute top-0 left-0 right-0">
+    <% flash.each do |type, message| %>
+    <div class="flash bg-indigo-600 text-white px-5 py-2 rounded-xl   <%= type %>" data-message-popup-target="popup">
+    <%= message %>!
+    </div>
+    <% end %>
+    </div>
+   
+
+    <%= yield %>
+  </body>
+</html>

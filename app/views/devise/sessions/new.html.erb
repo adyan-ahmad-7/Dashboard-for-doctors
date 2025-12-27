@@ -1,0 +1,149 @@
+<div data-controller="auth-tabs"
+     class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-white to-purple-100 px-4">
+
+  <div class="w-full max-w-md bg-white shadow-2xl rounded-3xl px-10 py-12">
+
+    <!-- Tabs -->
+    <div class="flex mb-10 bg-gray-100 rounded-2xl p-1.5 shadow-inner">
+      <button
+        data-action="click->auth-tabs#showLoginForm"
+        data-auth-tabs-target="loginTab"
+        class="w-1/2 py-3 text-sm font-semibold rounded-xl transition-all duration-200
+               bg-white text-indigo-600 shadow-md">
+        Login
+      </button>
+
+      <button
+        data-action="click->auth-tabs#showSignupForm"
+        data-auth-tabs-target="signupTab"
+        class="w-1/2 py-3 text-sm font-semibold rounded-xl transition-all duration-200
+               text-gray-600 bg-transparent">
+        Signup
+      </button>
+    </div>
+
+    <!-- Login Form -->
+    <div data-auth-tabs-target="loginForm" class="space-y-8">
+      <h2 class="text-3xl font-extrabold text-gray-800 text-center">
+        Welcome Back
+      </h2>
+      <p class="text-sm text-gray-500 text-center">
+        Sign in to continue
+      </p>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "space-y-6") do |f| %>
+
+        <div class="space-y-3">
+          <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.email_field :email,
+            class: "w-full px-4 py-3 rounded-xl border border-gray-300
+                    focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" %>
+        </div>
+
+        <div class="space-y-3">
+          <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
+          <div class="relative" data-controller="password-toggle">
+            <%= f.password_field :password,
+              class: "w-full px-4 py-3 rounded-xl border border-gray-300
+                      focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500",
+              data: { "password-toggle-target": "loginPassword" } %>
+
+            <p class="absolute right-5 cursor-pointer text-indigo-600 top-3"
+               data-action="click->password-toggle#loginPasswordShowHide">
+              show
+            </p>
+          </div>
+
+          <div class="text-right mt-2">
+            <%= link_to "Forgot your password?",
+              new_password_path(resource_name),
+              class: "text-sm font-medium text-indigo-600 hover:underline" %>
+          </div>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="flex items-center gap-3 text-sm text-gray-600">
+            <%= f.check_box :remember_me, class: "rounded border-gray-300 text-indigo-600" %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+
+        <%= f.submit "Log in",
+          class: "w-full mt-4 bg-indigo-600 hover:bg-indigo-700
+                  text-white py-3 rounded-xl font-semibold transition" %>
+      <% end %>
+    </div>
+
+    <!-- Signup Form -->
+    <div data-auth-tabs-target="signupForm" class="space-y-6 hidden">
+      <h2 class="text-3xl font-extrabold text-gray-800 text-center">
+        Create Account
+      </h2>
+      <p class="text-sm text-gray-500 text-center">
+        Join us in just a few seconds
+      </p>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: "space-y-6") do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="space-y-3">
+          <%= f.label :name, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.text_field :name,
+            class: "w-full px-4 py-3 rounded-xl border border-gray-300
+                    focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" %>
+        </div>
+
+        <div class="space-y-3">
+          <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.email_field :email,
+            class: "w-full px-4 py-3 rounded-xl border border-gray-300
+                    focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" %>
+        </div>
+
+        <div class="space-y-3">
+          <%= f.label :specialty, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.select :specialty,
+            ["Ear", "Heart", "Medical", "Chest", "Dental", "Skin"],
+            { prompt: "Select specialty" },
+            class: "w-full px-4 py-3 rounded-xl border border-gray-300 text-gray-700
+                    focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" %>
+        </div>
+
+        <div class="space-y-3">
+          <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
+          <div class="relative" data-controller="password-toggle">
+            <%= f.password_field :password,
+              class: "w-full px-4 py-3 rounded-xl border border-gray-300
+                      focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500",
+              data: { "password-toggle-target": "loginPassword" } %>
+
+            <p class="absolute right-5 cursor-pointer text-indigo-600 top-3"
+               data-action="click->password-toggle#loginPasswordShowHide">
+              show
+            </p>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-700" %>
+          <div class="relative" data-controller="password-toggle">
+            <%= f.password_field :password_confirmation,
+              class: "w-full px-4 py-3 rounded-xl border border-gray-300
+                      focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500",
+              data: { "password-toggle-target": "loginPassword" } %>
+
+            <p class="absolute right-5 cursor-pointer text-indigo-600 top-3"
+               data-action="click->password-toggle#loginPasswordShowHide">
+              show
+            </p>
+          </div>
+        </div>
+
+        <%= f.submit "Sign up",
+          class: "w-full mt-4 bg-purple-600 hover:bg-purple-700
+                  text-white py-3 rounded-xl font-semibold transition" %>
+      <% end %>
+    </div>
+
+  </div>
+</div>

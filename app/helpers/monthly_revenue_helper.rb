@@ -1,0 +1,2 @@
+module MonthlyRevenueHelper
+end
