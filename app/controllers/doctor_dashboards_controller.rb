@@ -1,5 +1,6 @@
 class DoctorDashboardsController < ApplicationController
-  def index
+  def content
     @patient = Patient.new
+    render partial: "shared/main_content", layout: false
   end
 end

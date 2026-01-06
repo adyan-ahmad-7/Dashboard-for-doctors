@@ -1,0 +1,100 @@
+<div class="w-64 bg-white shadow-md h-screen flex flex-col">
+    <div class="p-6 border-b">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-[#539AEF] rounded-full flex items-center justify-center text-white font-bold">D</div>
+        <h1 class="text-xl font-semibold">Doctor.D</h1>
+      </div>
+    </div>
+
+    <nav class="flex-1 px-4">
+  <ul class="space-y-2">
+    <li data-side-bar-buttons-target="button"
+    data-action="click->side-bar-buttons#loadContent"
+    data-url="/dashboard_content"
+      <button class="flex items-center space-x-3 text-teal-600 bg-teal-50 px-4 py-3 rounded-lg font-medium">
+        <span>📊</span><span>Dashboard</span>
+      </button>
+    </li>
+     <li>
+    <div data-controller="patient-form-modal">
+
+      <!-- Sidebar Button -->
+      <button data-action="click->patient-form-modal#openForm"
+              class="flex items-center space-x-3 text-gray-600 hover:bg-gray-100 px-4 py-3 rounded-lg">
+        ➕ Add Patient
+      </button>
+
+      <!-- Modal -->
+      <div data-patient-form-modal-target="modal"
+          class="hidden fixed inset-0 z-50 bg-black bg-opacity-40 flex items-center justify-center">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-4xl relative">
+
+          <!-- Close Button -->
+          <button data-action="click->patient-form-modal#closeForm"
+                  class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl">
+            &times;
+          </button>
+
+          <%= render "shared/patient_form" %>
+
+        </div>
+      </div>
+
+</div>
+
+    </li>
+    <li data-side-bar-buttons-target="button"
+      data-action="click->side-bar-buttons#loadContent"
+      data-url="/patients">
+      <button class="flex items-center space-x-3 text-gray-600 hover:bg-gray-100 px-4 py-3 rounded-lg">
+        <span>👥</span><span>Patients</span>
+      </button>
+    </li>
+   
+    <li data-side-bar-buttons-target="button"
+        data-action="click->side-bar-buttons#loadContent"
+        data-url="/appointments">
+      <button class="flex items-center space-x-3 text-gray-600 hover:bg-gray-100 px-4 py-3 rounded-lg">
+        <span>📅</span><span>Appointments</span>
+      </button>
+    </li>
+      <li data-side-bar-buttons-target="button"
+    data-action="click->side-bar-buttons#loadContent"
+    data-url="/expenses">
+      <button class="flex items-center space-x-3 text-gray-600 hover:bg-gray-100 px-4 py-3 rounded-lg">
+        <span>⇄</span><span>Expenses</span>
+      </button>
+    </li>
+    <li data-side-bar-buttons-target="button"
+    data-action="click->side-bar-buttons#loadContent"
+    data-url="/monthly_revenues">
+      <button class="flex items-center space-x-3 text-gray-600 hover:bg-gray-100 px-4 py-3 rounded-lg">
+        <span>📈</span><span>Monthly Revenue</span>
+      </button>
+    </li>
+  
+  </ul>
+
+  <div class="mt-10">
+    <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Tools</h3>
+    <ul class="space-y-2">
+      <li>
+        <button class="flex items-center space-x-3 text-gray-600 hover:bg-gray-100 px-4 py-3 rounded-lg">
+          <span>⚙️</span><span>Settings</span>
+        </button>
+      </li>
+      <li>
+        <button class="flex items-center space-x-3 text-gray-600 hover:bg-gray-100 px-4 py-3 rounded-lg">
+          <span>📞</span><span>Contact</span>
+        </button>
+      </li>
+      <li>
+        <button class="flex items-center space-x-3 text-gray-600 hover:bg-gray-100 px-4 py-3 rounded-lg">
+          <span>⬅️</span><span>Logout</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+  </div>

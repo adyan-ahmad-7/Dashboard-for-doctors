@@ -1,6 +1,9 @@
 class PatientsController < ApplicationController
   before_action :authenticate_user!
   def index
+    @patients = Patient.all
+    render "patients/index", layout: false
+
   end
 
   def new
@@ -21,10 +24,17 @@ class PatientsController < ApplicationController
 
 
   def edit
+    @patient = current_user.patients.find(params[:id])
+    render "shared/patient_form", layout: false
   end
 
   def destroy
+      @patient = current_user.patients.find(params[:id])
+      @patient.destroy
+
+      redirect_to patients_path, notice: "Patient deleted successfully"
   end
+
 
   
 

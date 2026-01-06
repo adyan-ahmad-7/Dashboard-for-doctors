@@ -4,12 +4,16 @@ export default class extends Controller {
   static targets = ["popup"]
 
   connect() {
-    this.hidePopup()
+    if (this.hasPopupTarget) {
+      this.hidePopup()
+    }
   }
 
   hidePopup() {
     setTimeout(() => {
-      this.popupTarget.classList.add("hidden")
+      if (this.hasPopupTarget) {
+        this.popupTarget.classList.add("hidden")
+      }
     }, 4000)
   }
 }

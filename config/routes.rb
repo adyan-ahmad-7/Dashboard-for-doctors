@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :expenses
   resources :appointments
   resources :monthly_revenues
+  get "/dashboard_content", to: "doctor_dashboards#content"
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
